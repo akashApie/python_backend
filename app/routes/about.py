@@ -3,11 +3,12 @@ from flask import request, jsonify
 from ..models.aboutus import AboutUs
 from .. import db
 
-class AboutUsGetAndPost(Resource):
+class AboutUsGet(Resource):
     def get(self):
         about_sections= AboutUs.query.all()
         return jsonify([section.to_dict() for section in about_sections])
 
+class AboutUsPost(Resource):
     def post(self):
         parser = reqparse.RequestParser()
         parser.add_argument('title', type=str, required=True, help='Title is required')
@@ -30,7 +31,7 @@ class AboutUsGetAndPost(Resource):
 
         return jsonify(about.to_dict()), 201
 
-class AboutUsUpdateDelete(Resource):
+class AboutUsUpdate(Resource):
     def put(self, id):
         parser = reqparse.RequestParser()
         parser.add_argument('title', type=str)
@@ -57,6 +58,7 @@ class AboutUsUpdateDelete(Resource):
 
         return jsonify(updated.to_dict())
 
+class AboutUsDelete(Resource):
     def delete(self, id):
         deleted = AboutUs.delete_by_id(id)
 

@@ -5,12 +5,12 @@ class AboutUs(BaseModel):
     __tablename__ = "aboutus"
 
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(50), unique=True, nullable=false, index=True)
-    text = db.Column(db.Text, unique=True, nullable=false, index=True)
-    image = db.Column(db.String, unique=True, nullable=false, index=True)
+    title = db.Column(db.String(50), unique=True, nullable=False, index=True)
+    text = db.Column(db.Text, nullable=False)
+    image = db.Column(db.String(255), unique=True, nullable=False, index=True)
     additional_images = db.Column(JSON, nullable=True)
-    information = db.Column(db.Text, unique=True, nullable=false, index=True)
-    additional_information = db.Column(db.Text, unique=True, nullable=false, index=True)
+    information = db.Column(db.Text, nullable=False)
+    additional_information = db.Column(db.Text, nullable=False)
 
     @classmethod
     def create(cls, title, text, image, information, additional_information,additional_images):

@@ -1,6 +1,6 @@
-from datetime import datetime
+from datetime import datetime, timezone
 from sqlalchemy import Column, DateTime
-from .. import db
+from app.db import db
 
 class BaseModel(db.Model):
     __abstract__ = True  # makes the class an abstract class
